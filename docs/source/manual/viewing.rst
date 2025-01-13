@@ -27,6 +27,7 @@ and have the same functionality and differ only in colouring of volumes.
 Generally:
 
 .. code-block:: python
+    :linenos:
 
     v = pyg4ometry.visualisation.VtkViewer()
     v.addLogicalVolume(lv)
@@ -123,6 +124,7 @@ logical volume has no concept of translation or rotation on its own, so it is pl
 in the centre of the visualiser coordinate system, i.e. in its own frame.
 
 .. code-block:: python
+    :linenos:
 
     lv  # pyg4ometry.geant4.LogicalVolume instance
     v = pyg4ometry.visualisation.VtkViewer()
@@ -133,22 +135,27 @@ It is possible to view the logical volume with an offset (i.e. translation) and
 rotation. This is purely for adding the scene of the viewer and does not affect
 the logical volume itself or anything it is used in. We can see the docstring:
 
->>> v = pyg4ometry.visualisation.VtkViewer()
->>> v.addLogicalVolume?
-Signature:
-v.addLogicalVolume(
-logical,
-mtra=matrix([[1, 0, 0],
-[0, 1, 0],
-[0, 0, 1]]),
-tra=array([0, 0, 0]),
-recursive=True,
-)
+.. code-block:: python
+    :linenos:
+
+    >>> v = pyg4ometry.visualisation.VtkViewer()
+    >>> v.addLogicalVolume?
+    Signature:
+    v.addLogicalVolume(
+    logical,
+    mtra=matrix([[1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1]]),
+    tra=array([0, 0, 0]),
+    recursive=True,
+    )
+
 
 If we start from a rotation as a series of Tait-Bryan angles, we can turn this into
 a matrix with:
 
-.. code-block::
+.. code-block:: python
+    :linenos:
 
    import numpy as np
    rotation = [0, np.pi/2, 0] # for example
@@ -183,16 +190,20 @@ Similarly to a logical volume, an individual solid has no concept of placement p
 and will by default be placed at the centre of the scene. It is also possible to add it
 to the scene with a rotation and translation.
 
->>> v.addSolid?
-Signature:
-v.addSolid(
-solid,
-rotation=[0, 0, 0],
-position=[0, 0, 0],
-representation='surface',
-colour=[0.5, 0.5, 0.5],
-opacity=0.2,
-)
+.. code-block:: python
+    :linenos:
+
+    >>> v.addSolid?
+    Signature:
+    v.addSolid(
+    solid,
+    rotation=[0, 0, 0],
+    position=[0, 0, 0],
+    representation='surface',
+    colour=[0.5, 0.5, 0.5],
+    opacity=0.2,
+    )
+
 
 This uses Tait-Bryan angles for the rotation.
 
@@ -204,12 +215,14 @@ in these and it is useful to understand the individual constituents even if the 
 a valid solid or mesh (i.e. completely disconnected solids). To do this we can visualise just
 a Boolean solid on its own.
 
-.. code-block::
+.. code-block:: python
+    :linenos:
 
-   s # e.g. a pyg4ometry.geant4.solid.Subtraction instance
-   v = pyg4ometry.visualisation.VtkViewer()
-   v.addBooleanSolidRecursive(s)
-   v.view()
+    s # e.g. a pyg4ometry.geant4.solid.Subtraction instance
+    v = pyg4ometry.visualisation.VtkViewer()
+    v.addBooleanSolidRecursive(s)
+    v.view()
+
 
 This will work recursively for each solid that makes up the Boolean even if they are Booleans
 themselves. It will tolerate shapes that cannot form a valid mesh such as the resultant Boolean
@@ -232,7 +245,7 @@ Random Colours
 With the :code:`VtkViewerColoured` class, we can supply the default colour as :code:`"random"`,
 which will result in every volume being visualised with a random colour to be different.
 
-.. code-block::
+.. code-block:: python
 
    v = pyg4ometry.visualisation.VtkViewerColoured(defaultColour="random")
 
@@ -258,7 +271,8 @@ Cutters are a feature in the visualiser to generate the usually red, green, blue
 that intercept the edges of the geometry in a given plane. By default, these are along
 each axis aligned with 0,0,0. These can be plotted or added to an existing plot as follows:
 
-:: code-block::
+.. code-block:: python
+    :linenos:
 
     pyg4ometry.visualisation.Plot.AddCutterDataToPlot("crosssection-ZX.dat",
                                                       "zx",
@@ -267,7 +281,8 @@ each axis aligned with 0,0,0. These can be plotted or added to an existing plot 
 
 An optional Matplotlib axes instance can be given if there is one from an existing plot.
 
-:: code-block::
+.. code-block:: python
+    :linenos:
 
     f = matplotlib.pyplot.figure()
     ax = f.add_subplot(111)
@@ -275,5 +290,6 @@ An optional Matplotlib axes instance can be given if there is one from an existi
     pyg4ometry.visualisation.Plot.AddCutterDataToPlot("crosssection-ZX.dat",
                                                       "zx", ax,
                                                       unitsFactor=0.001)
+
 
 The full documentation can be found for :meth:`pyg4ometry.visualisation.Plot.AddCutterDataToPlot`.

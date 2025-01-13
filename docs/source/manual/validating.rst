@@ -5,7 +5,6 @@ Validating Geometry
 ===================
 
 
-
 Overlap Checking
 ----------------
 
@@ -23,12 +22,14 @@ the following code:
 
     lv.checkOverlaps()
 
+
 This will check only the immediate daughters of this logical volume. To descend further into
 a geometry, the recursive flag can be used:
 
 .. code-block :: python
 
     lv.checkOverlaps(recursive=True)
+
 
 See :ref:`g4-module` : :code:`LogicalVolume.checkOverlaps()` for full details. A more
 complete example is:
@@ -45,6 +46,7 @@ complete example is:
    v = pyg4ometry.visualisation.VtkViewer()
    v.addLogicalVolume(l)
    v.view()
+
 
 .. figure:: pythonscripting/pythonscripting2.png
    :alt: Example overlap visualisation
