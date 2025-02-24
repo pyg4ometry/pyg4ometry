@@ -155,7 +155,7 @@ lint.isort.required-imports = ["from __future__ import annotations"]
 
 [tool.cibuildwheel]
 build = ["*macosx*", "*manylinux_x86_64", "*windows*"]
-skip = ["pp*", "cp36-*", "cp37-*", "cp313-*"]
+skip = ["pp*", "cp36-*", "cp37-*"]
 
 [tool.cibuildwheel.linux]
 archs = ["auto"]
